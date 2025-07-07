@@ -16,6 +16,8 @@ total-automation-lab/
 ├── test-scenarios/ # Practice use cases and workflows
 ├── projects/ # End-to-end automation mini-projects
 ├── notes/ # Daily or topic-based learning notes
+
+
 └── README.md
 
 ## Status

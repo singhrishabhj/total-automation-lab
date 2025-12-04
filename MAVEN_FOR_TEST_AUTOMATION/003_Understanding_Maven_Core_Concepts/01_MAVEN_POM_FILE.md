@@ -211,6 +211,7 @@ Version must be defined unless managed elsewhere.
 
 ---
 ---
+---
 
 ## POM.xml 
 
@@ -427,6 +428,184 @@ Used to:
 * **Dependency Management & Properties** increase maintainability and control.
 
 ---
+---
+---
+
+# POM.xml (Continuation – Sample File Explained)
+
+Below is a **sample `pom.xml` file** with comments to understand how each section works.
+
+---
+
+# Sample `pom.xml` with Explanation
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Root element for every Maven project -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Defines Maven POM model version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Organization / project group -->
+    <groupId>com.example</groupId>
+
+    <!-- Project name -->
+    <artifactId>simple-demo</artifactId>
+
+    <!-- Project version -->
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- Output file type -->
+    <packaging>jar</packaging>
+
+    <!-- Human readable project name -->
+    <name>Simple Demo Maven Project</name>
+
+    <!-- Short project description -->
+    <description>A simple Maven project example with clear comments.</description>
+
+
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+
+                <!-- Java version configuration -->
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <!-- Dependencies -->
+    <dependencies>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
+
+            <!-- Available only during testing -->
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
+```
+
+---
+
+# Notes on POM Elements
+
+## Required Elements
+
+These four fields **uniquely identify a Maven project**:
+
+1. **modelVersion**
+
+   * Specifies the POM schema version.
+   * Almost always `4.0.0`.
+
+2. **groupId**
+
+   * Identifies the organization or package structure.
+   * Uses reverse domain format.
+
+3. **artifactId**
+
+   * Name of the project.
+   * Becomes the output file name.
+
+4. **version**
+
+   * Project version.
+   * `SNAPSHOT` → development version
+   * Without SNAPSHOT → stable release
+
+---
+
+## Common Optional Elements
+
+1. **packaging**
+
+   * Defines the output format (jar / war / pom / ear)
+
+2. **name**
+
+   * Readable project title.
+
+3. **description**
+
+   * Informational purpose only.
+
+4. **build**
+
+   * Manages compile process and build behavior.
+
+5. **dependencies**
+
+   * Defines external libraries used.
+
+---
+
+# How Maven Uses pom.xml
+
+1. Maven reads `pom.xml`.
+2. Downloads required dependencies.
+3. Applies plugins and configurations.
+4. Builds the project.
+5. Generates output file.
+
+---
+
+# Output Naming Convention
+
+Given:
+
+```
+groupId: com.example
+artifactId: simple-demo
+version: 1.0-SNAPSHOT
+packaging: jar
+```
+
+Output will be:
+
+```
+simple-demo-1.0-SNAPSHOT.jar
+```
+
+---
+
+# Summary
+
+* `pom.xml` is the main configuration file in Maven.
+* `<groupId>`, `<artifactId>`, `<version>`, `<modelVersion>` uniquely identify the project.
+* `<dependencies>` manages libraries.
+* `<build>` controls compilation and packaging.
+* `<plugins>` provide extended functionality.
+* `<packaging>` decides output format.
+* Maven automatically downloads and manages libraries.
+
+---
+
+
 
 
 

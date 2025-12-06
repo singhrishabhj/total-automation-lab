@@ -298,3 +298,150 @@ Maven takes care of:
 * Better maintainability
 * Version consistency
 
+---
+
+## Common Dependency Scopes
+
+| Scope      | Description                          | Available Classpaths      | Use Case                 | Example Library |
+| ---------- | ------------------------------------ | ------------------------- | ------------------------ | --------------- |
+| `compile`  | Default scope. Available everywhere  | Compile, Runtime, Test    | Core project libraries   | commons-lang3   |
+| `provided` | Provided by server or runtime        | Compile, Test             | Servlet API, Tomcat      | servlet-api     |
+| `runtime`  | Not required to compile              | Runtime, Test             | JDBC drivers             | mysql-connector |
+| `test`     | Used only for testing                | Test only                 | Unit testing frameworks  | junit, testng   |
+| `system`   | Provided manually                    | Compile, Test             | External local JAR files | custom-lib.jar  |
+| `import`   | Used to import dependency management | DependencyManagement only | BOM management           | Spring Boot BOM |
+
+---
+
+## Explanation of Each Scope
+
+### 1. Compile (Default)
+
+* Used in all phases
+* Automatically included
+* Needed to run and compile the application
+
+Example:
+
+```xml
+<scope>compile</scope>
+```
+
+---
+
+### 2. Provided
+
+* Available during compile
+* Not included in final build
+* Expected from environment (e.g., server)
+
+Example:
+
+```xml
+<scope>provided</scope>
+```
+
+Used for:
+
+* Servlet API
+* JSP libraries
+* Tomcat classes
+
+---
+
+### 3. Runtime
+
+* Not needed while compiling
+* Required when application runs
+
+Example:
+
+```xml
+<scope>runtime</scope>
+```
+
+Used for:
+
+* Database drivers
+* Runtime engines
+
+---
+
+### 4. Test
+
+* Only for test cases
+* Not available in production code
+
+Example:
+
+```xml
+<scope>test</scope>
+```
+
+Used for:
+
+* JUnit
+* TestNG
+* Mockito
+
+---
+
+### 5. System
+
+* JAR must be provided manually
+* Not downloaded by Maven
+* Hardcoded path required
+
+Example:
+
+```xml
+<scope>system</scope>
+<systemPath>${project.basedir}/libs/custom.jar</systemPath>
+```
+
+Not recommended unless necessary.
+
+---
+
+### 6. Import
+
+* Used inside `dependencyManagement`
+* Imports group of dependencies (BOM file)
+
+Example:
+
+```xml
+<scope>import</scope>
+```
+
+Used in:
+
+* Spring Boot BOM
+* Cloud dependencies
+
+---
+
+## Summary
+
+| Scope    | When Used          |
+| -------- | ------------------ |
+| compile  | All phases         |
+| provided | Compile + Test     |
+| runtime  | Runtime only       |
+| test     | Test phase only    |
+| system   | Local machine only |
+| import   | Version management |
+
+---
+
+## Final Note
+
+Choosing the correct scope:
+
+* Improves build speed
+* Avoids conflicts
+* Reduces jar size
+* Increases project stability
+
+---
+

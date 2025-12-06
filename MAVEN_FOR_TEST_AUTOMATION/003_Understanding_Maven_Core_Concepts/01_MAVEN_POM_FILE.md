@@ -605,6 +605,11 @@ simple-demo-1.0-SNAPSHOT.jar
 
 ---
 
+---
+
+# SUPER POM
+- a base model , where all the model implicitly inherited from a SuperPOM
+
 
 
 

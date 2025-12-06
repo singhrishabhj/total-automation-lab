@@ -203,3 +203,98 @@ Maven manages:
 
 ---
 
+## Transitive Dependencies
+
+Transitive dependencies are **indirect dependencies** that are downloaded automatically by Maven.
+
+You do **not** explicitly add them in the `pom.xml` file.
+When you add one dependency, Maven automatically downloads the **dependencies of that dependency**.
+
+In short:
+
+> Dependency → has its own dependencies → Maven downloads all of them.
+
+---
+
+### Example
+
+If you add this dependency:
+
+```xml
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.19.0</version>
+</dependency>
+```
+
+Internally, `commons-lang3` may depend on other libraries.
+
+Maven will:
+
+* Detect those internal dependencies
+* Download them automatically
+* Add them to your project classpath
+
+You don’t need to:
+
+* Search for them
+* Add them manually
+* Configure them
+
+---
+
+### Why Transitive Dependencies Matter
+
+Without transitive dependency handling:
+
+* You would need to manually find every required library
+* Version conflicts would be common
+* Builds could easily break
+
+With Maven:
+
+* Everything is resolved automatically
+* Dependency chain is handled properly
+* Builds become stable
+
+---
+
+## Centralized Dependency Management
+
+Maven manages **all dependencies from a single place** → `pom.xml`.
+
+This is called **centralized dependency management**.
+
+Instead of:
+
+* Managing JAR files in different folders
+* Adding libraries manually
+* Mixing versions
+
+You only update:
+
+```xml
+<dependencies>
+    ...
+</dependencies>
+```
+
+Maven takes care of:
+
+* Downloading correct versions
+* Resolving conflicts
+* Tracking dependency hierarchy
+* Updating project classpath
+
+---
+
+### Benefits of Centralized Dependency Management
+
+* Single source of truth (pom.xml)
+* Easy to upgrade libraries
+* Less configuration errors
+* Cleaner project structure
+* Better maintainability
+* Version consistency
+
